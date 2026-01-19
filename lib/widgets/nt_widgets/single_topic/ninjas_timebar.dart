@@ -86,7 +86,7 @@ class NinjasTimebarWidget extends NTWidget {
       valueListenable: model.timeSubscription,
       builder: (context, timeData, child) {
         double totalValue =
-            (tryCast<num>(timeData)?.toDouble() ?? 0.0).clamp(0.0, 160.0);
+            -(tryCast<num>(timeData)?.toDouble() ?? 0.0).clamp(0.0, 160.0) + 160;
 
         return ValueListenableBuilder<Object?>(
           valueListenable: model.activeSubscription,
@@ -131,7 +131,7 @@ class _NinjasTimebarContentState extends State<_NinjasTimebarContent>
   static const Color endgameColor = Colors.pinkAccent;
   static const Color activeColor = Colors.green;
   static const Color inactiveColor = Colors.grey;
-  
+
   @override
   void initState() {
     super.initState();
@@ -251,18 +251,7 @@ class _NinjasTimebarContentState extends State<_NinjasTimebarContent>
                         minHeight: constraints.maxHeight,
                       ),
                     ),
-                    if (index == 0)
-                      const Center(
-                        child: Text(
-                          'Autonomous',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+                    
                   ],
                 ),
               );
